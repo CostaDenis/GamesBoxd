@@ -1,5 +1,6 @@
 package com.example.gamesboxd
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -12,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.gamesboxd.databinding.ActivityAlterarEmailBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -21,12 +21,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class AlterarEmail : AppCompatActivity() {
 
-
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
     private lateinit var email: String
 
     private lateinit var inputEmail: EditText
+    private lateinit var inputNovoEmail: EditText
     private lateinit var inputSenha: EditText
     private lateinit var btnAlterarEmail: Button
 
@@ -39,8 +39,11 @@ class AlterarEmail : AppCompatActivity() {
         val currentUser = auth.currentUser
 
         inputEmail = findViewById(R.id.inputEmail)
+        inputNovoEmail = findViewById(R.id.inputEmailNovo)
         inputSenha = findViewById(R.id.inputSenhaReautenticacao)
         btnAlterarEmail = findViewById(R.id.btn_AlterarEmail)
+
+
 
         if(userId != null){
             firestore.collection("Users").document(userId).addSnapshotListener{ documento, error ->
@@ -51,24 +54,22 @@ class AlterarEmail : AppCompatActivity() {
             }
 
             btnAlterarEmail.setOnClickListener {
-                val emailAtual = inputEmail.text.toString()
+                val emailAtual = inputNovoEmail.text.toString()
                 val senha = inputSenha.text.toString()
 
                 if(email != emailAtual){
                     AtualizacaoEmail(emailAtual, senha, currentUser) { success ->
                         if(success){
-                            if (userId != null) {
-                                firestore.collection("Users").document(userId)
-                                    .update(mapOf("email" to emailAtual)).addOnCompleteListener { update ->
+                                EsperarVerificacaoEmail(currentUser, userId, emailAtual) { emailVerificado ->
 
-                                        if(update.isSuccessful){
-                                            showSnack("Email atualizado com sucesso!", ContextCompat.getColor(this, R.color.ColorSecundary))
-                                        } else {
-                                            showSnack("Não foi possiível alterar o email!", Color.RED)
-                                        }
+                                    if(emailVerificado){
+                                        showSnack("Email atualizado com sucesso!", ContextCompat.getColor(this, R.color.ColorSecundary))
+                                    } else {
 
                                     }
-                            }
+                                }
+                        } else {
+                            showSnack("Não foi possível alterar o email!", Color.RED)
                         }
                     }
 
@@ -106,10 +107,7 @@ class AlterarEmail : AppCompatActivity() {
                     it.verifyBeforeUpdateEmail(email).addOnCompleteListener { task ->
                         if(task.isSuccessful){
                             showSnack("Email de verificação enviado para $email.",  ContextCompat.getColor(this, R.color.ColorSecundary))
-                            EsperarVerificacaoEmail(currentUser) { emailVerificado ->
-                                callback(emailVerificado)
-                            }
-
+                            callback(true)
                         } else {
                             showSnack("Erro ao enviar email de verificação: ${task.exception?.message}", Color.RED)
                             callback(false)
@@ -124,25 +122,49 @@ class AlterarEmail : AppCompatActivity() {
 
     }
 
-    fun EsperarVerificacaoEmail(currentUser: FirebaseUser?, callback: (Boolean) -> Unit){
-
-        val handler = Handler(Looper.getMainLooper())
-        val run = object: Runnable{
-            override fun run() {
-                currentUser?.reload()?.addOnCompleteListener { reload ->
-                    if(reload.isSuccessful){
-                        if(currentUser.isEmailVerified){
-                            callback(true)
-                        } else {
-                            handler.postDelayed(this, 2000)
-                        }
-                    } else {
-                        callback(false)
-                    }
-                }
-            }
+    fun EsperarVerificacaoEmail(currentUser: FirebaseUser?, userId: String, emailAtual: String, callback: (Boolean) -> Unit) {
+        if (currentUser == null) {
+            showSnack("Erro: usuário atual é nulo.", Color.RED)
+            callback(false)
+            return
         }
-        handler.post(run)
+
+        currentUser.reload().addOnCompleteListener { reload ->
+
+            if (reload.isSuccessful) {
+                firestore.collection("Users").document(userId)
+                    .update(mapOf("email" to emailAtual)).addOnCompleteListener { task ->
+                        if(task.isSuccessful){
+                            showSnack("Email verificado com sucesso!", Color.BLUE)
+                        } else {
+                            showSnack("Não foi possível atualizar o email", Color.RED)
+                        }
+
+                        verificarEmaileLogout(currentUser, emailAtual, callback)
+                    }
+            } else {
+                showSnack("Erro ao recarregar o usuário!", Color.RED)
+                callback(false)
+            }
+        }.addOnFailureListener { exception ->
+            showSnack("Erro no recarregamento: ${exception.message}", Color.RED)
+            callback(false)
+        }
+    }
+
+    fun verificarEmaileLogout(currentUser: FirebaseUser, emailAtual: String, callback: (Boolean) -> Unit){
+        if(currentUser.isEmailVerified){
+            showSnack("Email verificado com sucesso!", Color.BLUE)
+        } else {
+            showSnack("Email não verificado ainda. Verifique seu email.", Color.YELLOW)
+        }
+
+        auth.signOut()
+        val intent = Intent(this@AlterarEmail, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+        callback(true)
     }
 
 }
+
