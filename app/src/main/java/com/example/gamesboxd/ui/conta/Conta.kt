@@ -46,7 +46,6 @@ class Conta : Fragment() {
     private lateinit var nome: String
     private lateinit var email: String
     private lateinit var user: String
-    private lateinit var picture: String
     private lateinit var btnEditar: Button
     private lateinit var imgView: ImageView
     private lateinit var alterarSenha: TextView
@@ -100,7 +99,7 @@ class Conta : Fragment() {
                     nome = documento.getString("nome").toString()
                     email = documento.getString("email").toString()
                     user = documento.getString("id").toString()
-                    picture = documento.getString("picture").toString()
+                    var picture = documento.getString("picture")
 
                     binding.inputNome.setText(nome)
                     binding.inputEmail.setText(email)
@@ -108,6 +107,8 @@ class Conta : Fragment() {
                     if(picture != null){
                         Glide.with(this).load(picture).into(binding.imageViewFoto)
                         initialImgUri = picture.toUri()
+                    }  else {
+
                     }
                 }
             }

@@ -1,9 +1,8 @@
 package com.example.gamesboxd
 
-import android.app.Activity
+
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,7 +10,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,24 +18,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.Firebase
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStream
-import java.io.InputStreamReader
 import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
@@ -87,17 +76,22 @@ class MainActivity : AppCompatActivity() {
             if(username.isEmpty() || password.isEmpty()){
                 showSnack("Complete todos os campos", Color.GRAY)
             } else {
-                auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(this){ task ->
+                    auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(this){ task ->
 
-                    if(task.isSuccessful){
-                        showSnack("Login realizado!", ContextCompat.getColor(this, R.color.ColorSecundary))
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            ShowMenu()
-                        }, 2000)
-                    } else {
-                        showSnack("Credencias não encontradas!", Color.RED)
+                        if(task.isSuccessful){
+                            val user = auth.currentUser
+
+                            if(user != null && user.isEmailVerified){
+                                    showSnack("Login realizado!", ContextCompat.getColor(this, R.color.ColorSecundary))
+                                    Handler(Looper.getMainLooper()).postDelayed({
+                                        ShowMenu()
+                                    }, 1500)
+                            }
+
+                        } else {
+                            showSnack("Credencias não encontradas!", Color.RED)
+                        }
                     }
-                }
             }
         }
 
@@ -182,7 +176,7 @@ class MainActivity : AppCompatActivity() {
                                     showSnack("Cadastro realizado com Google!", ContextCompat.getColor(this, R.color.ColorSecundary))
                                     Handler(Looper.getMainLooper()).postDelayed({
                                         ShowMenu()
-                                    }, 2000)
+                                    }, 1500)
 
                                 } else {
                                     showSnack("Erro ao registrar usuário no banco de dados!", Color.RED)

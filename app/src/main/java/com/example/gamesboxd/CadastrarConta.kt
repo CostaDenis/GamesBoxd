@@ -104,9 +104,16 @@ class CadastrarConta : AppCompatActivity() {
                                                     .document(userId).set(user).addOnCompleteListener { task ->
                                                         if(task.isSuccessful){
 
+                                                            auth.currentUser!!.sendEmailVerification().addOnCompleteListener { verificacao ->
+                                                                if(verificacao.isSuccessful){
+                                                                    showSnack("Email de verificação enviado para $email.",  ContextCompat.getColor(this, R.color.ColorSecundary))
+                                                                } else {
+                                                                    showSnack("Erro ao enviar email de verificação: ${task.exception?.message}", Color.RED)
+                                                                }
+                                                            }
+
                                                             if(imgUri != null){
                                                                 UploadImg(userId, imgUri!!)
-                                                                showSnack("Cadastro realizado com sucesso", ContextCompat.getColor(this, R.color.ColorSecundary))
                                                             }
                                                         } else {
                                                             val errorMessage = task.exception?.message ?: "Erro desconhecido"
@@ -155,7 +162,7 @@ class CadastrarConta : AppCompatActivity() {
             imgRef.downloadUrl.addOnSuccessListener { uri ->
                 firestore.collection("Users").document(userId).update("picture", uri.toString())
                     .addOnSuccessListener {
-                        showSnack("Imagem enviada com sucesso", ContextCompat.getColor(this, R.color.ColorSecundary))
+
                     }.addOnFailureListener {
                         showSnack("Erro ao atualizar a imagem!", Color.RED)
                     }
