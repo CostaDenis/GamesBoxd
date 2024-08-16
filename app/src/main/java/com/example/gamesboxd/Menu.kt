@@ -2,6 +2,8 @@ package com.example.gamesboxd
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -12,11 +14,16 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gamesboxd.databinding.ActivityMenuBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Menu : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMenuBinding
+
+    private lateinit var firebase: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +50,30 @@ class Menu : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        firebase = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
+
+        val headerView: View = navView.getHeaderView(0)
+        val headerNome: TextView = headerView.findViewById(R.id.text_view_user_menu)
+        val headerEmail: TextView = headerView.findViewById(R.id.text_view_email_menu)
+
+        val userId = auth.currentUser?.uid
+
+        if(userId != null){
+            firebase.collection("Users").document(userId)
+                .get().addOnSuccessListener { documento ->
+                    if(documento != null){
+                        val nome = documento.getString("nome")
+                        val email = documento.getString("email")
+
+                        headerNome.setText(nome)
+                        headerEmail.setText(email)
+                    }
+                }.addOnFailureListener {
+
+                }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

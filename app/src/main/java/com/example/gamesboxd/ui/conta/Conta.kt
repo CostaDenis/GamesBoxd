@@ -113,8 +113,6 @@ class Conta : Fragment() {
                 }
             }
 
-
-
             btnEditar = binding.btnEditar
             btnEditar.setOnClickListener {
                 val nome_Atual = binding.inputNome.text.toString()
