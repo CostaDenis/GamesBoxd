@@ -3,6 +3,7 @@ package com.example.gamesboxd
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.gamesboxd.databinding.ActivityMenuBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.bumptech.glide.Glide
+import com.google.firebase.firestore.ListenerRegistration
 
 class Menu : AppCompatActivity() {
 
@@ -24,6 +27,7 @@ class Menu : AppCompatActivity() {
 
     private lateinit var firebase: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
+    private var userListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,23 +59,29 @@ class Menu : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         val headerView: View = navView.getHeaderView(0)
-        val headerNome: TextView = headerView.findViewById(R.id.text_view_user_menu)
-        val headerEmail: TextView = headerView.findViewById(R.id.text_view_email_menu)
+        val headerNome: TextView = headerView.findViewById(R.id.text_view_user_header)
+        val headerEmail: TextView = headerView.findViewById(R.id.text_view_email_header)
+        val headerPicture: ImageView = headerView.findViewById(R.id.imageView_foto_header)
 
         val userId = auth.currentUser?.uid
 
         if(userId != null){
-            firebase.collection("Users").document(userId)
-                .get().addOnSuccessListener { documento ->
-                    if(documento != null){
+            userListener = firebase.collection("Users").document(userId)
+                            .addSnapshotListener { documento, erro ->
+                    if(documento?.exists() == true){
                         val nome = documento.getString("nome")
                         val email = documento.getString("email")
+                        val picture = documento.getString("picture")
 
                         headerNome.setText(nome)
                         headerEmail.setText(email)
-                    }
-                }.addOnFailureListener {
 
+                        if(picture != null){
+                            Glide.with(this).load(picture).into(headerPicture)
+                        } else {
+                            headerPicture.setImageResource(R.drawable.baseline_account_circle_24)
+                        }
+                    }
                 }
         }
     }
@@ -86,4 +96,10 @@ class Menu : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_menu)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    override fun onDestroy(){
+        super.onDestroy()
+        userListener?.remove()
+    }
 }
+

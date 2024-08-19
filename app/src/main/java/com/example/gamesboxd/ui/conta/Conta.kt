@@ -8,8 +8,6 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,7 +33,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 import java.io.FileOutputStream
-import java.util.UUID
 
 class Conta : Fragment() {
     private lateinit var binding: FragmentContaBinding
@@ -108,7 +105,7 @@ class Conta : Fragment() {
                         Glide.with(this).load(picture).into(binding.imageViewFoto)
                         initialImgUri = picture.toUri()
                     }  else {
-
+                        binding.imageViewFoto.setImageResource(R.drawable.baseline_account_circle_24)
                     }
                 }
             }
