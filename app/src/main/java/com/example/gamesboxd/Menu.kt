@@ -5,25 +5,27 @@ import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.gamesboxd.databinding.ActivityMenuBinding
+import com.example.gamesboxd.databinding.FragmentHomeBinding
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.bumptech.glide.Glide
 import com.google.firebase.firestore.ListenerRegistration
 
 class Menu : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMenuBinding
+    private lateinit var bindingMenu: ActivityMenuBinding
+    private lateinit var binding: FragmentHomeBinding
 
     private lateinit var firebase: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -32,18 +34,18 @@ class Menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMenuBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        bindingMenu = ActivityMenuBinding.inflate(layoutInflater)
+        setContentView(bindingMenu.root)
 
-        setSupportActionBar(binding.appBarMenu.toolbar)
+        setSupportActionBar(bindingMenu.appBarMenu.toolbar)
 
-        binding.appBarMenu.fab.setOnClickListener { view ->
+        bindingMenu.appBarMenu.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null)
                 .setAnchorView(R.id.fab).show()
         }
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
+        val drawerLayout: DrawerLayout = bindingMenu.drawerLayout
+        val navView: NavigationView = bindingMenu.navView
         val navController = findNavController(R.id.nav_host_fragment_content_menu)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -84,6 +86,7 @@ class Menu : AppCompatActivity() {
                     }
                 }
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
