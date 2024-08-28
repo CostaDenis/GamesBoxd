@@ -14,7 +14,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.gamesboxd.databinding.ActivityMenuBinding
-import com.example.gamesboxd.databinding.FragmentHomeBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -25,8 +24,6 @@ class Menu : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var bindingMenu: ActivityMenuBinding
-    private lateinit var binding: FragmentHomeBinding
-
     private lateinit var firebase: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
     private var userListener: ListenerRegistration? = null
@@ -71,6 +68,7 @@ class Menu : AppCompatActivity() {
             userListener = firebase.collection("Users").document(userId)
                             .addSnapshotListener { documento, erro ->
                     if(documento?.exists() == true){
+
                         val nome = documento.getString("nome")
                         val email = documento.getString("email")
                         val picture = documento.getString("picture")
