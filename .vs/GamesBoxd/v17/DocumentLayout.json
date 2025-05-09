@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\denis\\dev\\DotNet\\GamesBoxd\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{788CEB33-7D93-4BAD-B710-64FAAA34A768}|GamesBoxd\\GamesBoxd.csproj|c:\\users\\denis\\dev\\dotnet\\gamesboxd\\gamesboxd\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{788CEB33-7D93-4BAD-B710-64FAAA34A768}|GamesBoxd\\GamesBoxd.csproj|solutionrelative:gamesboxd\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{788CEB33-7D93-4BAD-B710-64FAAA34A768}|GamesBoxd\\GamesBoxd.csproj|c:\\users\\denis\\dev\\dotnet\\gamesboxd\\gamesboxd\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{788CEB33-7D93-4BAD-B710-64FAAA34A768}|GamesBoxd\\GamesBoxd.csproj|solutionrelative:gamesboxd\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{788CEB33-7D93-4BAD-B710-64FAAA34A768}|GamesBoxd\\GamesBoxd.csproj|c:\\users\\denis\\dev\\dotnet\\gamesboxd\\gamesboxd\\styles\\input.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{788CEB33-7D93-4BAD-B710-64FAAA34A768}|GamesBoxd\\GamesBoxd.csproj|solutionrelative:gamesboxd\\styles\\input.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\GamesBoxd\\GamesBoxd\\Components\\App.razor",
+              "RelativeDocumentMoniker": "GamesBoxd\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\GamesBoxd\\GamesBoxd\\Components\\App.razor",
+              "RelativeToolTip": "GamesBoxd\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-09T15:18:38.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\GamesBoxd\\GamesBoxd\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "GamesBoxd\\Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\GamesBoxd\\GamesBoxd\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "GamesBoxd\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-09T15:17:55.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "input.css",
+              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\GamesBoxd\\GamesBoxd\\Styles\\input.css",
+              "RelativeDocumentMoniker": "GamesBoxd\\Styles\\input.css",
+              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\GamesBoxd\\GamesBoxd\\Styles\\input.css",
+              "RelativeToolTip": "GamesBoxd\\Styles\\input.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-09T15:14:40.976Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
