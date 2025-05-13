@@ -1,7 +1,129 @@
 ﻿@page "/"
-
 <PageTitle>Home</PageTitle>
 
-<h1 class="text-5xl text-blue-600">Hello, world!</h1>
+<div class="w-full h-full bg-background">
 
-Welcome to your new app!
+    <section class="text-textColor py-32">
+        <div class="w-full h-auto mx-auto flex flex-col md:flex-row items-start justify-center gap-12">
+
+            <div class="flex-1">
+                <img src="example.png" alt="Logo" class="h-auto max-h-[100rem] w-auto" />
+            </div>
+
+            <div class="flex-1 text-left">
+
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 justify-start">
+                    GamesBoxd
+                </h1>
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper lacus vel leo luctus
+                    ullamcorper. Nam semper vel orci id laoreet. Praesent porta, lacus interdum porta facilisis, elit
+                    mauris convallis quam, sit amet viverra elit felis mollis ipsum. Cras a arcu justo. Proin quis nibh
+                    at massa blandit ultricies vitae vel tortor. Ut eu ex non lectus ornare tempor quis id elit. Integer
+                    vel cursus ipsum, sit amet iaculis ligula.
+                </p>
+
+                <div class="flex flex-row gap-10">
+                    <a href="auth">
+                        <h2 class="bg-highlight hover:bg-textColor hover:scale-110 font-bold text-textColor hover:text-highlight
+                             text-lg sm:text-xl md:text-2xl lg:text-3xl py-3 px-6 rounded-lg transition duration-300">
+                            Entrar</h2>
+                    </a>
+                    <a href="/Account/Register">
+                        <h2 class="bg-secondary hover:bg-black hover:scale-110 font-bold text-black hover:text-secondary
+                             text-lg sm:text-xl md:text-2xl lg:text-3xl py-3 px-6 rounded-lg transition duration-300">
+                            Criar Conta</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-900 flex w-full h-auto py-32 text-textColor">
+
+        <div class="flex flex-col items-center justify-center w-full h-auto mx-auto">
+
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold   ">Jogos em alta🔥</h2>
+
+
+            <div class="flex flex-col md:flex-row gap-4 mt-10 justify-center items-center">
+
+                <div class="w-auto h-auto">
+                    <img src="fallout.svg" alt="Logo" class="h-[30rem] w-auto max-w-[24rem]" />
+                </div>
+
+                <div class="w-auto h-auto">
+                    <img src="fallout.svg" alt="Logo" class="h-[30rem] w-auto max-w-[24rem]" />
+                </div>
+
+                <div class="w-auto h-auto">
+                    <img src="fallout.svg" alt="Logo" class="h-[30rem] w-auto max-w-[24rem]" />
+                </div>
+
+
+            </div>
+
+
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-28">Reviews em alta🔥</h2>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 justify-center items-center">
+
+
+                <div class="flex flex-col bg-gray-950 w-auto max-w-[90%] h-auto p-6 rounded-lg shadow-lg">
+
+                    <div class="flex flex-row justify-between items-center mb-2">
+                        <h4 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold">Author</h4>
+                        <h4 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold">10</h4>
+                    </div>
+
+                    <p class="text-sm sm:text-base md:text-lg lg:text-xl">Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Praesent pellentesque ac urna quis venenatis. Vestibulum eleifend justo ut
+                        convallis bibendum. Suspendisse aliquam consequat tellus eget iaculis. Nunc facilisis lacus
+                        neque. Maecenas tempus ipsum vitae ullamcorper sodales. Etiam vitae dignissim ante.</p>
+
+                    <div class="flex flex-row gap-10">
+
+                        <div class="flex flex-row h-auto w-auto justify-center items-center gap-2 mt-4">
+                            <div class="flex items-center justify-center h-full">
+                                <img src="like.svg" class="h-10 w-auto object-contain" alt="Likes" />
+                            </div>
+
+                            <div class="flex items-center h-full">
+                                <h5
+                                    class="text-highlight text-xs sm:text-sm md:text-base lg:text-lg leading-none font-semibold">
+                                    00
+                                </h5>
+                            </div>
+
+                        </div>
+
+                        <div class="flex flex-row h-auto w-auto justify-center items-center gap-2 mt-4">
+                            <div class="flex items-center justify-center h-full">
+                                <img src="comment.svg" class="h-10 w-auto object-contain" alt="Likes" />
+                            </div>
+
+                            <div class="flex items-center h-full">
+                                <h5
+                                    class="text-highlight text-xs sm:text-sm md:text-base lg:text-lg leading-none font-semibold">
+                                    00
+                                </h5>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+</div>

@@ -1,8 +1,8 @@
-﻿@implements IDisposable
+﻿@* @implements IDisposable *@
 
 @inject NavigationManager NavigationManager
 
-<div class="top-row ps-3 navbar navbar-dark">
+@* <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">GamesBoxd</a>
     </div>
@@ -88,5 +88,40 @@
     {
         NavigationManager.LocationChanged -= OnLocationChanged;
     }
-}
+} *@
 
+<div class="w-full h-18 bg-menuBackground text-textColor flex flex-row justify-between items-center px-4">
+
+    <NavLink href="" class="px-4 py-2">
+        <img src="GamesBoxd.png" alt="Logo" class="h-20 w-auto" />
+    </NavLink>
+
+    <button id="menuButton" class="block sm:hidden hover:bg-darkVS-MenuTopHover hover:rounded-md"
+        aria-controls="menuHamburguer" aria-expanded="false">
+        <img class="h-6 w-auto px-2" src="hamburger.svg" alt="hamburguer">
+    </button>
+
+    <div class="hidden sm:flex sm:flex-row gap-4 items-center">
+
+        <NavLink href="/Account/Register">
+            <h2 class="text-textColor hover:text-highlight font-bold text-base uppercase px-4 py-2">Criar conta</h2>
+        </NavLink>
+
+        <NavLink href="auth">
+            <h2 class="text-textColor hover:text-highlight font-bold text-base uppercase px-4 py-2">Jogos</h2>
+        </NavLink>
+
+        <NavLink href="auth">
+            <h2 class="text-textColor hover:text-highlight font-bold text-base uppercase px-4 py-2">Listas</h2>
+        </NavLink>
+
+        <NavLink href="auth">
+            <h2 class="text-textColor bg-highlight rounded-lg hover:bg-textColor hover:text-highlight
+                 font-bold text-base uppercase px-4 py-2 transition duration-300">
+                Entrar
+            </h2>
+        </NavLink>
+
+    </div>
+
+</div>
