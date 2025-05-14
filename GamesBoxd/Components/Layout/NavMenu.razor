@@ -101,23 +101,38 @@
         <img class="h-6 w-auto px-2" src="hamburger.svg" alt="hamburguer">
     </button>
 
-    <div class="hidden sm:flex sm:flex-row gap-4 items-center">
+    <div class="hidden sm:flex sm:flex-row gap-16 items-center">
 
-        <NavLink href="/Account/Register">
-            <h2 class="text-textColor hover:text-highlight font-bold text-base uppercase px-4 py-2">Criar conta</h2>
+        <NavLink href="auth" class="group relative inline-block px-0 py-2">
+            <h2 class="text-textColor font-bold text-base relative uppercase z-10">
+                Criar conta</h2>
+
+            <span
+                class="absolute left-0 bottom-0 w-0 h-[4px] bg-highlight transition-all duration-300 group-hover:w-full">
+            </span>
         </NavLink>
 
-        <NavLink href="auth">
-            <h2 class="text-textColor hover:text-highlight font-bold text-base uppercase px-4 py-2">Jogos</h2>
+        <NavLink href="auth" class="group relative inline-block px-0 py-2">
+            <h2 class="text-textColor font-bold text-base relative uppercase z-10">
+                Jogos</h2>
+
+            <span
+                class="absolute left-0 bottom-0 w-0 h-[4px] bg-highlight transition-all duration-300 group-hover:w-full">
+            </span>
         </NavLink>
 
-        <NavLink href="auth">
-            <h2 class="text-textColor hover:text-highlight font-bold text-base uppercase px-4 py-2">Listas</h2>
+        <NavLink href="auth" class="group relative inline-block px-0 py-2">
+            <h2 class="text-textColor font-bold text-base relative uppercase z-10">
+                Listas</h2>
+
+            <span
+                class="absolute left-0 bottom-0 w-0 h-[4px] bg-highlight transition-all duration-300 group-hover:w-full">
+            </span>
         </NavLink>
 
         <NavLink href="auth">
             <h2 class="text-textColor bg-highlight rounded-lg hover:bg-textColor hover:text-highlight
-                 font-bold text-base uppercase px-4 py-2 transition duration-300">
+                 font-bold text-base uppercase px-10 py-2 transition duration-300">
                 Entrar
             </h2>
         </NavLink>
