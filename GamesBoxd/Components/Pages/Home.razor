@@ -1,9 +1,10 @@
 ﻿@page "/"
+@using GamesBoxd.Components.Layout
 <PageTitle>Home</PageTitle>
 
 <div class="w-full h-full bg-background">
 
-    <section class="text-textColor py-32">
+    <section class="text-textColor py-32 px-2">
         <div class="w-full h-auto mx-auto flex flex-col md:flex-row items-start justify-center gap-12">
 
             <div class="flex-1">
@@ -39,7 +40,7 @@
         </div>
     </section>
 
-    <section class="bg-gray-900 flex w-full h-auto py-32 text-textColor">
+    <section class="bg-gray-900 flex w-full h-auto py-32 text-textColor px-2">
 
         <div class="flex flex-col items-center justify-center w-full h-auto mx-auto">
 
@@ -60,7 +61,6 @@
                 <div class="w-auto h-auto">
                     <img src="fallout.svg" alt="Logo" class="h-auto w-auto" />
                 </div>
-
 
             </div>
 
@@ -217,74 +217,7 @@
     </section>
 
 
-    @* <section class="h-auto w-full text-textColor py-32 mx-auto">
-
-        <div class="flex flex-col items-center justify-center">
-
-            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Como funciona?
-            </h2>
-
-            <div class="text-left self-start">
-
-                <div class="flex flex-row gap-6 mt-10">
-                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                        1.
-                    </h3>
-                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                        Faça sua conta
-                    </h3>
-                </div>
-
-                <div class="flex flex-row gap-6">
-                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                        2.
-                    </h3>
-                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                        Adicione os jogos que já jogou
-                    </h3>
-                </div>
-
-                <div class="flex flex-row gap-6">
-                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                        3.
-                    </h3>
-                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                        Avalie, escreva reviews e descubra novos jogos
-                    </h3>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="flex flex-col items-center justify-center mt-28">
-
-            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Para quem é o GamesBoxd?
-            </h2>
-
-            <div class="text-left self-start mt-10">
-
-                <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                    🎮 Para gamers que gostam de organizar tudo que já jogaram </h3>
-
-
-                <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                    ✍️ Para quem curte escrever opiniões sobre jogos </h3>
-
-                <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-10">
-                    🤝 Para quem quer descobrir novos jogos através da comunidade
-                </h3>
-
-            </div>
-
-        </div>
-
-    </section> *@
-
-
-    <section class="h-auto w-full text-textColor py-32 mx-auto">
+    <section class="h-auto w-full text-textColor py-32 mx-auto px-2">
         <div class="flex flex-col items-center justify-center">
 
             <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Sobre
@@ -338,27 +271,32 @@
 
                     <div class="flex flex-row gap-6 mt-14">
                         <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-                            🎮 Para gamers que gostam de organizar tudo que já jogaram
+                            🎮
+                        </h3>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                            Para gamers que gostam de organizar tudo que já jogaram
                         </h3>
                     </div>
 
                     <div class="flex flex-row gap-6 mt-8">
                         <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-                            ✍️ Para quem curte escrever opiniões sobre jogos
+                            ✍️
+                        </h3>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                            Para quem curte escrever opiniões sobre jogos
                         </h3>
                     </div>
 
                     <div class="flex flex-row gap-6 mt-8">
                         <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-                            🤝 Para quem quer descobrir novos jogos através da comunidade
+                            🤝
+                        </h3>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                            Para quem quer descobrir novos jogos através da comunidade
                         </h3>
                     </div>
-
-
 
                 </div>
-
-
 
             </div>
 
@@ -368,5 +306,59 @@
 
 
 
+    <section class="bg-gray-900 h-auto w-full text-textColor py-32 mx-auto px-2" id="#About">
+
+        <div class="flex flex-col justify-center items-center gap-10">
+
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Registre, avalie e
+                descubra novos jogos!</h2>
+
+            <div class="flex flex-row gap-16 mt-2">
+
+                <a href="auth">
+                    <h2 class="bg-highlight hover:bg-textColor hover:scale-125 font-bold text-textColor hover:text-highlight
+                             text-2xl sm:text-3xl md:text-4xl lg:text-5xl py-3 px-6 rounded-lg 
+                             transition duration-300 shadow-xl hover:shadow-2xl shadow-black">
+                        Entrar</h2>
+                </a>
+
+                <a href="/Account/Register">
+                    <h2 class="bg-secondary hover:bg-black hover:scale-125 font-bold text-black hover:text-secondary
+                             text-2xl sm:text-3xl md:text-4xl lg:text-5xl py-3 px-6 rounded-lg 
+                             transition duration-300 shadow-xl hover:shadow-2xl shadow-black">
+                        Criar Conta</h2>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    @* <footer class="bg-gray-800 w-full text-gray-300 py-10 mt-20">
+        <div class="px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+
+            <!-- Logo ou nome -->
+            <div class="text-xl font-bold">🎮 GamesBoxd</div>
+
+            <!-- Links sociais -->
+            <div class="flex space-x-4 text-2xl">
+                <a href="https://twitter.com/seuprojeto" target="_blank" class="hover:text-white transition"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/seuprojeto" target="_blank" class="hover:text-white transition"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://github.com/seuprojeto" target="_blank" class="hover:text-white transition"><i
+                        class="fab fa-github"></i></a>
+            </div>
+
+            <!-- Outros links -->
+            <div class="text-sm text-gray-400">
+                © 2025 GamesBoxd. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer> *@
+
+    <Footer />
 
 </div>
