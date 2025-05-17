@@ -3,6 +3,7 @@
 @using System.ComponentModel.DataAnnotations
 @using System.Text
 @using System.Text.Encodings.Web
+@using GamesBoxd.Components.Layout
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
 @using GamesBoxd.Data
@@ -15,44 +16,59 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Register</PageTitle>
+<PageTitle>Criar Conta</PageTitle>
 
-<h1>Register</h1>
+<section class="flex flex-row justify-around items-center h-screen w-full">
+    
+    <div class="hidden lg:flex flex-col w-1/2 justify-center items-center bg-gray-950 h-full">
+        <img src="/images/icons/GamesBoxd.svg" alt="Logo" class="w-72 h-60" />
+        <p class="text-textColor text-xl sm:text-2xl md:text-3xl lg:text-4xl
+        font-bold mb-4 text-pretty">Comece a avaliar seus jogos agora!</p>
+    </div>
+    
+    <div class="w-1/2 flex justify-center items-center p-8">
+        <StatusMessage Message="@Message"/>
+        <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register"
+        class="rounded-lg p-4 bg-menuBackground h-auto min-w-[30rem] py-10 px-10">
 
-<div class="row">
-    <div class="col-md-4">
-        <StatusMessage Message="@Message" />
-        <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
-            <DataAnnotationsValidator />
-            <h2>Create a new account.</h2>
-            <hr />
-            <ValidationSummary class="text-danger" role="alert" />
-            <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label for="email">Email</label>
-                <ValidationMessage For="() => Input.Email" class="text-danger" />
+        <h1 class="text-textColor text-xl sm:text-2xl md:text-3xl lg:text-4xl
+        font-bold mb-4 text-center">Criar conta</h1>
+
+            <DataAnnotationsValidator/>
+
+            <ValidationSummary class="text-danger" role="alert"/>
+
+            <div class="flex flex-col gap-2">
+                <h3 class="text-textColor text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-1">Email</h3>
+                <InputText @bind-Value="Input.Email" class="w-full h-14 text-textColor text-sm sm:text-base md:text-lg lg:text-xl
+                border-[0.1px] border-gray-600 px-2 py-2" autocomplete="username" aria-required="true" placeholder="exemplo@gmail.com"/>
+                <ValidationMessage For="() => Input.Email" class="text-danger"/>
+
+                <h3 class="text-textColor text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-1">Senha</h3>
+                <InputText type="password" @bind-Value="Input.Password" class="w-full h-14 text-textColor text-sm sm:text-base md:text-lg lg:text-xl
+                border-[0.1px] border-gray-600 px-2 py-2" autocomplete="new-password" aria-required="true" placeholder="Senha"/>
+                <ValidationMessage For="() => Input.Password" class="text-danger"/>
+
+                <h3 class="text-textColor text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-1">Confirmar Senha</h3>
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="w-full h-14 text-textColor text-sm sm:text-base md:text-lg lg:text-xl
+                border-[0.1px] border-gray-600 px-2 py-2" autocomplete="new-password" aria-required="true" placeholder="Confirmar senha"/>
+                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger"/>
             </div>
-            <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label for="password">Password</label>
-                <ValidationMessage For="() => Input.Password" class="text-danger" />
+
+            <div class="mt-6">
+                <button type="submit" class="cursor-pointer h-auto w-full bg-highlight rounded-lg font-bold text-textColor
+                     text-lg sm:text-xl md:text-2xl lg:text-3xl px-4 sm:px-2 py-4 sm:py-2">Criar conta</button>
             </div>
-            <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label for="confirm-password">Confirm Password</label>
-                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
-            </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+
         </EditForm>
     </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            <ExternalLoginPicker />
-        </section>
-    </div>
-</div>
+
+</section>
+
+<Footer />
+
+
+
 
 @code {
     private IEnumerable<IdentityError>? identityErrors;
