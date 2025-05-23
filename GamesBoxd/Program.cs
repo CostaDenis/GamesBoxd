@@ -35,9 +35,6 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
-var cnnStr = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(cnnStr));
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
